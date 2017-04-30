@@ -33,5 +33,27 @@ namespace Assignment_1
         {
             this.random = random;
         }
+
+        /// <summary>
+        /// Adapted from https://gist.github.com/mikedugan/8249637
+        /// </summary>
+        /// <param name="a">The array to be shuffled</param>
+        /// <returns>A shuffled array using Fisher-Yates</returns>
+        public int[] Shuffle(int[] a)
+        {
+            int[] shuffled = a;
+
+            // go through array, starting at the last-index
+            for (var i = shuffled.Length - 1; i >= 0; i--)
+            {
+                var swapIndex = random.Next(i);         // get num between 0 and index, index not included
+                if (swapIndex == i) continue;           // don't replace with itself
+                var temp = shuffled[i];                 // get item at index i...
+                shuffled[i] = shuffled[swapIndex];      // set index i to new item
+                shuffled[swapIndex] = temp;             // place temp-item to swap-slot
+            }
+
+            return shuffled;
+        }
     }
 }
