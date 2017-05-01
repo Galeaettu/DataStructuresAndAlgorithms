@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlumBlumShub.cs" />
+    <Compile Include="BlumBlumShubAdapter.cs" />
     <Compile Include="FisherYatesShuffle.cs" />
     <Compile Include="IRandomProvider.cs" />
     <Compile Include="Program.cs" />
