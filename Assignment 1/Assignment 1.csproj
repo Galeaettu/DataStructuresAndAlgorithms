@@ -45,6 +45,7 @@
     <Compile Include="BlumBlumShub.cs" />
     <Compile Include="BlumBlumShubAdapter.cs" />
     <Compile Include="FisherYatesShuffle.cs" />
+    <Compile Include="Heap.cs" />
     <Compile Include="IRandomProvider.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
