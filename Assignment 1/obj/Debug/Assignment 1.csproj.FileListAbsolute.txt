@@ -1,1 +1,6 @@
 C:\Users\Chris\Dropbox\MCAST\Third Year\Second Semester\Data Structures and Algorithms\Assignment 1\Christian\Assignment 1\Assignment 1\bin\Debug\Assignment 1.exe.config
+C:\Users\Chris\Dropbox\MCAST\Third Year\Second Semester\Data Structures and Algorithms\Assignment 1\Christian\Assignment 1\Assignment 1\obj\Debug\Assignment 1.csprojResolveAssemblyReference.cache
+C:\Users\Chris\Dropbox\MCAST\Third Year\Second Semester\Data Structures and Algorithms\Assignment 1\Christian\Assignment 1\Assignment 1\bin\Debug\Assignment 1.exe
+C:\Users\Chris\Dropbox\MCAST\Third Year\Second Semester\Data Structures and Algorithms\Assignment 1\Christian\Assignment 1\Assignment 1\bin\Debug\Assignment 1.pdb
+C:\Users\Chris\Dropbox\MCAST\Third Year\Second Semester\Data Structures and Algorithms\Assignment 1\Christian\Assignment 1\Assignment 1\obj\Debug\Assignment 1.exe
+C:\Users\Chris\Dropbox\MCAST\Third Year\Second Semester\Data Structures and Algorithms\Assignment 1\Christian\Assignment 1\Assignment 1\obj\Debug\Assignment 1.pdb

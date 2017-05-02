@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Assignment_1
 {
+    /// <summary>
+    /// Reference: https://github.com/Evangielis/ModifiedBlumBlumShub/blob/master/ModifiedBlumBlumShub/BBSGenerator.cs
+    /// </summary>
     public class BlumBlumShub : IRandomProvider
     {
         private const long p = 3263849;

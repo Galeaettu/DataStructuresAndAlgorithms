@@ -16,10 +16,14 @@ namespace Assignment_1.Sections
 
         public SectionTwo()
         {
-            blumBlumShub = new BlumBlumShub();//implement Blum Blum Shub random generator
-            randomShuffle = new AlgorithmBShuffling(blumBlumShub);//Randomizing by shuffling, Algorithm B, by defualt using original RNG
+            // Blum Blum Shub RNG
+            blumBlumShub = new BlumBlumShub();
 
-            fisherYatesShuffle = new FisherYatesShuffle(randomShuffle);//using the FisherYatesShuffle with blumBlumShub random gen
+            // Randomizing by shuffling, Algorithm B, by defualt using original RNG
+            randomShuffle = new AlgorithmBShuffling(blumBlumShub);
+
+            // Fisher-Yates Shuffle with Blum Blum Shub RNG
+            fisherYatesShuffle = new FisherYatesShuffle(randomShuffle);
         }
 
 
@@ -27,21 +31,19 @@ namespace Assignment_1.Sections
         //random number generator as parameter. Use the FisherYatesShuffle and pass the random
         //number generator implemented in task 1 as parameter, to shuffle the sequence 1,2,3,4 for
         //24,000 times.
-        int[,] shuffle1234()
+        int[,] shuffleNumbers()
         {
-            var numberOfShuffleing = 24000;
-            int[] array = { 1, 2, 3, 4 };
-            int[,] shuffledArrays = new int[numberOfShuffleing, array.Length];
-            for (int i = 0; i < numberOfShuffleing; i++)
+            var shuffleNum = 24000;
+            int[] numArray = { 1, 2, 3, 4 };
+            int[,] shuffledArrays = new int[shuffleNum, numArray.Length];
+            for (int i = 0; i < shuffleNum; i++)
             {
-                var shuffledArray = fisherYatesShuffle.Shuffle(array);
+                var shuffledArray = fisherYatesShuffle.Shuffle(numArray);
                 //store every number of the generate array into a dimesion of the 2d array
-                for (int i2 = 0; i2 < shuffledArray.Length; i2++)
+                for (int j = 0; j < shuffledArray.Length; j++)
                 {
-                    shuffledArrays[i, i2] = shuffledArray[i2];
+                    shuffledArrays[i, j] = shuffledArray[j];
                 }
-                //printArray (shuffledArray);
-
             }
             return shuffledArrays;
         }
@@ -49,35 +51,37 @@ namespace Assignment_1.Sections
 
         int generatePermutationUnqiueNumber(int premuationIndex)
         {
+            // Gets the shuffled array if it was not created
             if (shuffledArray == null)
             {
-                shuffledArray = shuffle1234();//holds 24000 diffrent combinations of [1,2,3,4]
+                shuffledArray = shuffleNumbers();
             }
-            int[] premutation = getOneDFromTwoD(premuationIndex, shuffledArray);//{shuffledArray[0,0],shuffledArray[0,1],shuffledArray[0,2],shuffledArray[0,3]}; 
-            int t = shuffledArray.GetLength(1);//get the length of the second dimesion that is to say 4
+            int[] premutation = getSingleArray(premuationIndex, shuffledArray);
+            int t = shuffledArray.GetLength(1);
 
             //Step 1:
             //r = t, f = 0
             int r = t;
             int f = 0;
-            int s = 0;//s is required for steop 2
+
+            int s = 0;
 
 
             //Find the maximum value in the permutation between positions 0 and r-1.
             do
             {
                 //Step 2:
-                int tempBiggestPos = 0;
+                int largeNum = 0;
                 for (int i = 0; i < r; i++)
-                {//removing r-1,seemes to solve the issue
+                {
                     //Let s represent the position of the maximum value found (and therefore, 0 <= s <= r-1).
-                    if (tempBiggestPos < premutation[i])
+                    if (largeNum < premutation[i])
                     {
-                        tempBiggestPos = premutation[i];
+                        largeNum = premutation[i];
                         s = i;
                     }
                 }
-                //f = r * f + s
+
                 f = r * f + s;
 
                 //Step 3:
@@ -93,9 +97,10 @@ namespace Assignment_1.Sections
         }
 
 
-        /**
-         * Stores the number of time a given value (1..24) presents itself
-         * */
+        /// <summary>
+        /// Returns the number time that a number between 1 and 24 is visible
+        /// </summary>
+        /// <returns>Occurance number</returns>
         private int[] numberOfOccurances()
         {
 
@@ -104,6 +109,7 @@ namespace Assignment_1.Sections
 
             foreach (var number in unqiueNumbers)
             {
+                //increase occurance number of number
                 occured[number]++;
             }
             return occured;
@@ -122,6 +128,8 @@ namespace Assignment_1.Sections
 
             float x = 0f;
             float p = (1f / 24f);
+            
+            //for each possible value of f
             for (int i = 0; i <= 23; i++)
             {
                 x += (float)(Math.Pow(f[i], 2) / p);
@@ -139,7 +147,6 @@ namespace Assignment_1.Sections
             for (int i = 0; i < numbers.Length; i++)
             {
                 numbers[i] = generatePermutationUnqiueNumber(i);
-                //Console.WriteLine (i + ": " + numbers [i]);
             }
             return numbers;
         }
@@ -147,7 +154,7 @@ namespace Assignment_1.Sections
 
 
         //Returns a single int[] array from a 2D array at the specifed position
-        private int[] getOneDFromTwoD(int position, int[,] twoDarray)
+        private int[] getSingleArray(int position, int[,] twoDarray)
         {
             if (position > twoDarray.GetLength(0))
             {
@@ -169,9 +176,6 @@ namespace Assignment_1.Sections
                           ".\n   Testing Random Shuiffle : " + blumBlumShub.Next(100) + " , " + blumBlumShub.Next(100) + " , " + blumBlumShub.Next(100) +
                           ".\n   Testing unqiuue value for premuation at index 5 : " + generatePermutationUnqiueNumber(5) +
                           "\n    ChiTest Value " + chiSquareTest());
-            //genrateUnqiueNumbers ();
-
-            //printArray(shuffle1234 ());
         }
     }
 }

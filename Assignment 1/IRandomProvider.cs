@@ -11,6 +11,6 @@ namespace Assignment_1
     /// </summary>
     public interface IRandomProvider
     {
-        int Next(int maxValue);
+        long Next(int maxValue);
     }
 }
