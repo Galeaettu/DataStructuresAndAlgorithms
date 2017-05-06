@@ -44,6 +44,7 @@
     <Compile Include="AlgorithmBShuffling.cs" />
     <Compile Include="BlumBlumShub.cs" />
     <Compile Include="BlumBlumShubAdapter.cs" />
+    <Compile Include="BucketSort.cs" />
     <Compile Include="FisherYatesShuffle.cs" />
     <Compile Include="Heap.cs" />
     <Compile Include="IRandomProvider.cs" />
