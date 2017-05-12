@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assignment_1.Sections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,9 @@ namespace Assignment_1
     {
         static void Main(string[] args)
         {
+            SectionFour sectionFour = new SectionFour();
+            sectionFour.scenarioOne();
+            Console.ReadLine();
         }
     }
 }

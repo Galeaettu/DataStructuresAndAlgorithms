@@ -6,16 +6,20 @@ using System.Threading.Tasks;
 
 namespace Assignment_1
 {
-    public class BucketSort
+    /// <summary>
+    /// Adapted from : https://www.programmingalgorithms.com/algorithm/bucket-sort
+    /// </summary>
+    public class BucketSort<T> where T : IComparable
     {
-        /// <summary>
-        /// Adapted from : https://www.programmingalgorithms.com/algorithm/bucket-sort
-        /// </summary>
-        /// <param name="data">An array of numbers to be sorted</param>
-        public static void BucketSort(ref long[] data)
+        int[] data;
+        public BucketSort(int[] array){
+            this.data = array;
+        }
+        
+        public int[] bucketSort()
         {
-            long minValue = data[0];
-            long maxValue = data[0];
+            int minValue = data[0];
+            int maxValue = data[0];
 
             for (int i = 1; i < data.Length; i++)
             {
@@ -25,11 +29,11 @@ namespace Assignment_1
                     minValue = data[i];
             }
 
-            List<long>[] bucket = new List<long>[maxValue - minValue + 1];
+            List<int>[] bucket = new List<int>[maxValue - minValue + 1];
 
             for (int i = 0; i < bucket.Length; i++)
             {
-                bucket[i] = new List<long>();
+                bucket[i] = new List<int>();
             }
 
             for (int i = 0; i < data.Length; i++)
@@ -49,6 +53,8 @@ namespace Assignment_1
                     }
                 }
             }
+
+            return data;
         }
     }
 }

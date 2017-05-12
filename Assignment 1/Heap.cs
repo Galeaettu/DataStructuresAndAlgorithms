@@ -10,102 +10,124 @@ namespace Assignment_1
     /// Adapted from: 
     /// -    https://miafish.wordpress.com/2015/03/16/c-min-heap-implementation/
     /// -    https://en.wikipedia.org/wiki/Binary_heap#Heap_operations
+    /// -    http://www.algorithmist.com/index.php/Heap_sort
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class Heap<T> where T : IComparable
     {
-        private List<T> elements = new List<T>();
+        HeapElement<T>[] elements;
+        int heapSize;
 
-        public int GetSize()
+        public HeapElement<T>[] Elements { get { return elements; } }
+
+        //public int currentHeapSize = 0;
+
+        public Heap(int heapSize)
         {
-            return elements.Count;
+            elements = new HeapElement<T>[heapSize];
+
+            buildHeap();
+            //HeapElement
         }
 
-        public T GetMin()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Assignment.Heap`1"/> class.
+        /// This constuctor will populate the heap with the values of the array giving them the same priority has the size of their value
+        /// </summary>
+        /// <param name="array">Array. Of objects</param>
+        public Heap(T[] array)
         {
-            return this.elements.Count > 0 ? this.elements[0] : default(T);
-        }
-
-        public void Add(T item)
-        {
-            elements.Add(item);
-            this.HeapifyUp(elements.Count - 1);
-        }
-
-        public T PopMin()
-        {
-            if (elements.Count > 0)
+            heapSize = array.Length;
+            elements = new HeapElement<T>[heapSize];
+            int i = 0;
+            foreach (var item in array)
             {
-                T item = elements[0];
-                elements[0] = elements[elements.Count - 1];
-                elements.RemoveAt(elements.Count - 1);
-
-                this.HeapifyDown(0);
-                return item;
-            }
-
-            throw new InvalidOperationException("no element in heap");
-        }
-
-        private void HeapifyUp(int index)
-        {
-            var parent = this.GetParent(index);
-            if (parent >= 0 && elements[index].CompareTo(elements[parent]) < 0)
-            {
-                var temp = elements[index];
-                elements[index] = elements[parent];
-                elements[parent] = temp;
-
-                this.HeapifyUp(parent);
+                elements[i] = new HeapElement<T>(Convert.ToInt32(item), item);
+                i++;
             }
         }
 
-        private void HeapifyDown(int index)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Assignment.Heap`1"/> class.
+        /// This array will contain a priority which satisfies the priority queue
+        /// </summary>
+        /// <param name="array">Array. of heapElement each element containg a value and a priority</param>
+        public Heap(HeapElement<T>[] array)
         {
-            var smallest = index;
-
-            var left = this.GetLeft(index);
-            var right = this.GetRight(index);
-
-            if (left < this.GetSize() && elements[left].CompareTo(elements[index]) < 0)
-            {
-                smallest = left;
-            }
-
-            if (right < this.GetSize() && elements[right].CompareTo(elements[smallest]) < 0)
-            {
-                smallest = right;
-            }
-
-            if (smallest != index)
-            {
-                var temp = elements[index];
-                elements[index] = elements[smallest];
-                elements[smallest] = temp;
-
-                this.HeapifyDown(smallest);
-            }
-
+            elements = array;
         }
 
-        private int GetParent(int index)
+        public T[] sortHeap()
         {
-            if (index <= 0)
+            buildHeap();
+            int n = elements.Length - 1;
+            for (int i = n; i >= 0; i--)
             {
-                return -1;
+                swap(0, i);
+                //n = n - 1;
+                Heapify(0, i - 1);
             }
 
-            return (index - 1) / 2;
+            return heapElementsToArray();
         }
 
-        private int GetLeft(int index)
+
+        private T[] heapElementsToArray()
         {
-            return 2 * index + 1;
+            T[] values = new T[elements.Length];
+            int i = 0;
+            foreach (var item in elements)
+            {
+                values[i] = item.value;
+                i++;
+            }
+            return values;
         }
 
-        private int GetRight(int index)
+        public HeapElement<T>[] buildHeap()
         {
-            return 2 * index + 2;
+            int n = elements.Length - 1;
+            int start = (int)Math.Floor((double)(n / 2));
+            for (int i = start; i >= 0; i--)
+            {
+                Heapify(i, n);
+            }
+            return Elements;
         }
+
+        private void Heapify(int i, int n)
+        {
+            int left = 2 * i;
+            int right = 2 * i + 1;
+            int max, min = 0;
+
+            if (left <= n && elements[left].priority > elements[i].priority)
+            {
+                max = left;
+            }
+            else
+            {
+                max = i;
+            }
+
+            if (right <= n && elements[right].priority > elements[max].priority)
+            {
+                max = right;
+            }
+
+            if (max != i)
+            {
+                swap(i, max);
+                Heapify(max, n);
+            }
+        }
+
+        private void swap(int a, int b)
+        {
+            var temp = elements[a];
+            elements[a] = elements[b];
+            elements[b] = temp;
+        }
+
     }
 }
