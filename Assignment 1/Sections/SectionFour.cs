@@ -82,7 +82,7 @@ namespace Assignment_1.Sections
                     runSpeedsSum += runSpeeds[i];
                 }
 
-                //avreage
+                //Average
                 Console.WriteLine("Merge Sort (Average): " + runSpeedsSum / runSpeeds.Length);
                 //heapSort testing
                 stopWatch = new Stopwatch();
@@ -126,7 +126,7 @@ namespace Assignment_1.Sections
             int[] problemSizes = { 1024, 5120, 25600, 128000 };
             BlumBlumShub shub = new BlumBlumShub();
 
-            //integers 1 to N shuffled using the Fisher-Yates algorthim 
+            //integers 1 to N shuffled using the Fisher-Yates algorithm 
             for (int i = 0; i < problemSizes.Length; i++)
             {
                 int[] array = generateArray(problemSizes[i]);
@@ -147,7 +147,7 @@ namespace Assignment_1.Sections
                     runSpeeds[i] = stopWatch.ElapsedTicks;
                     runSpeedsSum += runSpeeds[i];
                 }
-                //avreage
+                //Average
 
 
                 Console.WriteLine("Merge Sort (Average): " + runSpeedsSum / runSpeeds.Length);
