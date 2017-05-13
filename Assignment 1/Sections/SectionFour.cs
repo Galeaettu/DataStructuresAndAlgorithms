@@ -119,7 +119,7 @@ namespace Assignment_1.Sections
                 }
 
                 int[] array = generateArray(min, true);
-                Console.WriteLine("Problem Size (randomly chhosen from 12 values)" + min + " : ");
+                Console.WriteLine("Problem Size (randomly chhosen from 12 values) " + problemSizes[i]+ " : ");
                 FisherYatesShuffle fShuffle = new FisherYatesShuffle();
                 array = fShuffle.Shuffle(array);
                 Stopwatch stopWatch = new Stopwatch();
@@ -128,7 +128,7 @@ namespace Assignment_1.Sections
                 MergeSort<int> mergeS = new MergeSort<int>(array);
                 long[] runSpeeds = new long[100];
                 long runSpeedsSum = 0;
-                for (int a = 0; a < runSpeeds.Length; a++)
+                for (int a = 0; a < problemSizes[i]; a++)
                 {
                     stopWatch.Start();
                     mergeS.sort();
@@ -147,7 +147,7 @@ namespace Assignment_1.Sections
                 Heap<int> Heap = new Heap<int>(array);
                 runSpeeds = new long[100];
                 runSpeedsSum = 0;
-                for (int a = 0; a < runSpeeds.Length; a++)
+                for (int a = 0; a < problemSizes[i]; a++)
                 {
                     stopWatch.Start();
                     Heap.sortHeap();
@@ -162,7 +162,7 @@ namespace Assignment_1.Sections
                 BucketSort<int> bucketSort = new BucketSort<int>(array);
                 runSpeeds = new long[100];
                 runSpeedsSum = 0;
-                for (int a = 0; a < runSpeeds.Length; a++)
+                for (int a = 0; a < problemSizes[i]; a++)
                 {
                     stopWatch.Start();
                     var arraySorted = bucketSort.bucketSort();

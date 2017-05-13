@@ -12,8 +12,10 @@ namespace Assignment_1
         static void Main(string[] args)
         {
             SectionFour sectionFour = new SectionFour();
-            sectionFour.scenarioOne();
+            //sectionFour.scenarioOne();
+            sectionFour.scenarioTwo();
             Console.ReadLine();
+            Console.ReadKey();
         }
     }
 }
