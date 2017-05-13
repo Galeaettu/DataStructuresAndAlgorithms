@@ -57,7 +57,7 @@ namespace Assignment_1.Sections
         public void scenarioOne()
         {
             int[] problemSizes = { 1024, 5120, 25600, 128000 }; ;
-            //integers 1 to N shuffled using the Fisher-Yates algorthim 
+            //integers 1 to N shuffled using the Fisher-Yates algorthm 
             for (int i = 0; i < problemSizes.Length; i++)
             {
                 int[] array = generateArray(problemSizes[i], false);
