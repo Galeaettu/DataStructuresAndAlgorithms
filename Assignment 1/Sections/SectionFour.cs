@@ -32,6 +32,28 @@ namespace Assignment_1.Sections
             return array;
         }
 
+        private int[] generateArray(int arraySize)
+        {
+            var r = new Random();
+            BlumBlumShub shub = new BlumBlumShub();
+
+            int[] array = new int[arraySize];
+            for (int i = 0; i < array.Length; i++)
+            {
+                long[] randomNumbers = { shub.Next(100), shub.Next(100), shub.Next(100), shub.Next(100), shub.Next(100), shub.Next(100), shub.Next(100), shub.Next(100), shub.Next(100), shub.Next(100), shub.Next(100), shub.Next(100) };
+                int min = (int)randomNumbers[0];
+                for (int a = 1; a < randomNumbers.Length; a++)
+                {
+                    if (randomNumbers[a] < min)
+                    {
+                        min = (int)randomNumbers[a];
+                    }
+                }
+                array[i] = min;
+            }
+            return array;
+        }
+
         public void scenarioOne()
         {
             int[] problemSizes = { 1024, 5120, 25600, 128000 }; ;
@@ -107,19 +129,8 @@ namespace Assignment_1.Sections
             //integers 1 to N shuffled using the Fisher-Yates algorthim 
             for (int i = 0; i < problemSizes.Length; i++)
             {
-                long[] randomNumbers = { shub.Next(100), shub.Next(100), shub.Next(100), shub.Next(100), shub.Next(100), shub.Next(100), shub.Next(100), shub.Next(100), shub.Next(100), shub.Next(100), shub.Next(100), shub.Next(100) };
-                //minium of 12 numbers
-                int min = (int)randomNumbers[0];
-                for (int a = 1; a < randomNumbers.Length; a++)
-                {
-                    if (randomNumbers[a] < min)
-                    {
-                        min = (int)randomNumbers[a];
-                    }
-                }
-
-                int[] array = generateArray(min, true);
-                Console.WriteLine("Problem Size (randomly chhosen from 12 values) " + problemSizes[i]+ " : ");
+                int[] array = generateArray(problemSizes[i]);
+                Console.WriteLine("Problem Size (randomly chosen from 12 values) " + problemSizes[i]+ " : ");
                 FisherYatesShuffle fShuffle = new FisherYatesShuffle();
                 array = fShuffle.Shuffle(array);
                 Stopwatch stopWatch = new Stopwatch();
@@ -128,7 +139,7 @@ namespace Assignment_1.Sections
                 MergeSort<int> mergeS = new MergeSort<int>(array);
                 long[] runSpeeds = new long[100];
                 long runSpeedsSum = 0;
-                for (int a = 0; a < problemSizes[i]; a++)
+                for (int a = 0; a < runSpeeds.Length; a++)
                 {
                     stopWatch.Start();
                     mergeS.sort();
@@ -147,7 +158,7 @@ namespace Assignment_1.Sections
                 Heap<int> Heap = new Heap<int>(array);
                 runSpeeds = new long[100];
                 runSpeedsSum = 0;
-                for (int a = 0; a < problemSizes[i]; a++)
+                for (int a = 0; a < runSpeeds.Length; a++)
                 {
                     stopWatch.Start();
                     Heap.sortHeap();
@@ -162,7 +173,7 @@ namespace Assignment_1.Sections
                 BucketSort<int> bucketSort = new BucketSort<int>(array);
                 runSpeeds = new long[100];
                 runSpeedsSum = 0;
-                for (int a = 0; a < problemSizes[i]; a++)
+                for (int a = 0; a < runSpeeds.Length; a++)
                 {
                     stopWatch.Start();
                     var arraySorted = bucketSort.bucketSort();
