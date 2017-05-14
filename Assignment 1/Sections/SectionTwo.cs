@@ -12,7 +12,7 @@ namespace Assignment_1.Sections
         AlgorithmBShuffling randomShuffle;
         FisherYatesShuffle fisherYatesShuffle;
         int[,] shuffledArray;
-        int[] unqiueNumbers;
+        int[] uniqueNumbers;
 
         public SectionTwo()
         {
@@ -49,14 +49,14 @@ namespace Assignment_1.Sections
         }
 
 
-        int generatePermutationUnqiueNumber(int premuationIndex)
+        int generatePermutationUnqiueNumber(int permutationIndex)
         {
             // Gets the shuffled array if it was not created
             if (shuffledArray == null)
             {
                 shuffledArray = shuffleNumbers();
             }
-            int[] premutation = getSingleArray(premuationIndex, shuffledArray);
+            int[] permutation = getSingleArray(permutationIndex, shuffledArray);
             int t = shuffledArray.GetLength(1);
 
             //Step 1:
@@ -75,9 +75,9 @@ namespace Assignment_1.Sections
                 for (int i = 0; i < r; i++)
                 {
                     //Let s represent the position of the maximum value found (and therefore, 0 <= s <= r-1).
-                    if (largeNum < premutation[i])
+                    if (largeNum < permutation[i])
                     {
-                        largeNum = premutation[i];
+                        largeNum = permutation[i];
                         s = i;
                     }
                 }
@@ -86,9 +86,9 @@ namespace Assignment_1.Sections
 
                 //Step 3:
                 //Swap the item in position s with the item in position r – 1
-                int tempS = premutation[s];
-                premutation[s] = premutation[r - 1];
-                premutation[r - 1] = tempS;
+                int tempS = permutation[s];
+                permutation[s] = permutation[r - 1];
+                permutation[r - 1] = tempS;
                 r = r - 1;
             } while (r > 1);//Step 4:
             //r = r -1
@@ -107,7 +107,7 @@ namespace Assignment_1.Sections
             int possibleCombinations = 24;
             int[] occured = new int[possibleCombinations];
 
-            foreach (var number in unqiueNumbers)
+            foreach (var number in uniqueNumbers)
             {
                 //increase occurance number of number
                 occured[number]++;
@@ -117,12 +117,11 @@ namespace Assignment_1.Sections
 
 
         //A chi-square test for independence can be carried out to try to determine if the Fisher Yates
-        //Algorithm is biased and tends to return a particular permutation more often than others.
         private float chiSquareTest()
         {
-            if (unqiueNumbers == null)
+            if (uniqueNumbers == null)
             {
-                unqiueNumbers = genrateUnqiueNumbers();
+                uniqueNumbers = genrateUniqueNumbers();
             }
             int[] f = numberOfOccurances();
 
@@ -141,7 +140,7 @@ namespace Assignment_1.Sections
         //For each of the 24,000 repetitions, calculate the value f as shown above and store the
         //frequency of the f i.e. the number of times each of the 24 possible values for f has been
         //returned by the algorithm.
-        int[] genrateUnqiueNumbers()
+        int[] genrateUniqueNumbers()
         {
             int[] numbers = new int[shuffledArray.GetLength(0)];
             for (int i = 0; i < numbers.Length; i++)
@@ -173,8 +172,8 @@ namespace Assignment_1.Sections
         {
             Console.Write("Sectio Two" +
                           " \n   Testing Blum Blum Shub Numbers : " + blumBlumShub.Next(100) + " , " + blumBlumShub.Next(100) + " , " + blumBlumShub.Next(100) +
-                          ".\n   Testing Random Shuiffle : " + blumBlumShub.Next(100) + " , " + blumBlumShub.Next(100) + " , " + blumBlumShub.Next(100) +
-                          ".\n   Testing unqiuue value for premuation at index 5 : " + generatePermutationUnqiueNumber(5) +
+                          ".\n   Testing Random Shuffle : " + blumBlumShub.Next(100) + " , " + blumBlumShub.Next(100) + " , " + blumBlumShub.Next(100) +
+                          ".\n   Testing unique value for permutation at index 5 : " + generatePermutationUnqiueNumber(5) +
                           "\n    ChiTest Value " + chiSquareTest());
         }
     }

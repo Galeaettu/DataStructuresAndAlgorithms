@@ -31,7 +31,6 @@ namespace Assignment_1
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Assignment.Heap`1"/> class.
         /// This constuctor will populate the heap with the values of the array giving them the same priority has the size of their value
         /// </summary>
         /// <param name="array">Array. Of objects</param>
@@ -48,7 +47,6 @@ namespace Assignment_1
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Assignment.Heap`1"/> class.
         /// This array will contain a priority which satisfies the priority queue
         /// </summary>
         /// <param name="array">Array. of heapElement each element containg a value and a priority</param>

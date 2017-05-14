@@ -35,12 +35,12 @@ namespace Assignment_1.Sections
         private int[] generateArray(int arraySize)
         {
             var r = new Random();
-            BlumBlumShub shub = new BlumBlumShub();
+            BlumBlumShub s = new BlumBlumShub();
 
             int[] array = new int[arraySize];
             for (int i = 0; i < array.Length; i++)
             {
-                long[] randomNumbers = { shub.Next(100), shub.Next(100), shub.Next(100), shub.Next(100), shub.Next(100), shub.Next(100), shub.Next(100), shub.Next(100), shub.Next(100), shub.Next(100), shub.Next(100), shub.Next(100) };
+                long[] randomNumbers = { s.Next(100), s.Next(100), s.Next(100), s.Next(100), s.Next(100), s.Next(100), s.Next(100), s.Next(100), s.Next(100), s.Next(100), s.Next(100), s.Next(100) };
                 int min = (int)randomNumbers[0];
                 for (int a = 1; a < randomNumbers.Length; a++)
                 {
